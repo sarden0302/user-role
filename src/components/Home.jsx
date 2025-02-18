@@ -1,5 +1,6 @@
 import {useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
+import CompanyComponent from "../pages/CompanyComponent";
 
 const Home = () => {
     const navigate = useNavigate(); // window.location.href; 처럼 JS 에서 이동 경로 설정
@@ -21,15 +22,31 @@ const Home = () => {
         }
     }, []);
 
+    // 역할(role) 에 따른 컴포넌트 선택
+    const roleUser = () => {
+        if (!user) {
+            return <div>사용자 정보가 없습니다.</div>;
+        }
+
+        console.log("user Role", user.userRole);
+        switch (user.userRole) {
+            case 2:
+                return <CompanyComponent />
+            default :
+                return <div>접근 권한이 없습니다.</div>
+        }
+    }
+
     return (
         <div>
             <h1>홈페이지</h1>
             {
                 user ? (
                     <div>
-                        <p>환영합니다. {user.useName}님!</p>
+                        <p>환영합니다. {user.userName}님!</p>
                         <button>로그아웃</button>
                         {/* 역할에 따라 다른 컴포넌트 랜더링 */}
+                        {roleUser()}
                     </div>)
                 : (
                     <div>
