@@ -1,3 +1,4 @@
+
 import React from "react";
 
 const AdminComponent = () => {
@@ -10,3 +11,7 @@ const AdminComponent = () => {
 };
 
 export default AdminComponent;
+// AdminComponent
+
+
+//
