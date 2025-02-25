@@ -5,8 +5,8 @@ import PathRoute from "./components/PathRoute";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <PathRoute />
-  </React.StrictMode>
+    <React.StrictMode>
+        <PathRoute/>
+    </React.StrictMode>
 );
 
