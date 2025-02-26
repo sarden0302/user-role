@@ -22,7 +22,7 @@ const apiService = {
                 .get(API_POST_URL)
                 .then(
                     (res) => {
-                        if (res.data > 0) {
+                        if (res.data.length > 0) {
                             callback(res.data);
                         } else {
                             alert("백엔드에서 가져올 수 있는 데이터가 없습니다.");

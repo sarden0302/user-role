@@ -49,7 +49,7 @@ const apiProductService = {
             )
     },
 
-    getProductsById : function (productId, setProduct, setProductId) {
+    getProductsById : function (productId, setProduct) {
         axios
             .get(`${API_PRODUCT_URL}/${productId}`)
             .then(  // success
@@ -59,7 +59,6 @@ const apiProductService = {
                         setProduct(response.data);
                     } else {
                         alert("찾으시는 상품 목록이 없습니다.");
-                        setProductId("");
                         setProduct(null);
                     }
                 }
@@ -68,7 +67,6 @@ const apiProductService = {
                 (error) => {
                     console.error("error code : " + error);
                     alert("상품 조회 중 예기치 못한 에러가 발생했습니다.");
-                    setProductId("");
                     setProduct(null);
                 }
             )
