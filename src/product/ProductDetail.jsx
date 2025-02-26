@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import apiProductService from "./apiProductService";
 
 const ProductDetail = () => {
     //제품 아이디 변수 이름
@@ -14,8 +15,10 @@ const ProductDetail = () => {
             alert("상품 ID를 입력하세요.");
             return;
         }
+
+        apiProductService.getProductsById(productId,  setProduct, setProductId);
         // 조회 클릭시 /api/ endpoint 로 접근해서 제품 id 에 해당하는 데이터 호출
-        axios
+        /*axios
             .get(`http://localhost:8080/api/products/${productId}`)
             .then(
                 (response) => {
@@ -35,7 +38,7 @@ const ProductDetail = () => {
                     setProductId("");
                     setProduct(null);
                 }
-            )
+            )*/
     }
 
     return (
