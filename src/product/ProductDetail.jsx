@@ -10,15 +10,6 @@ const ProductDetail = () => {
 
     const [quantity, setQuantity] = useState(1); // 주문 수량 상태 관리
 
-    const getProductDetail = () => {
-        if (!productId.trim()) {
-            alert("상품 ID를 입력하세요.");
-            return;
-        }
-
-        apiProductService.getProductsById(productId,  setProduct);
-    }
-
     useEffect(() => {
         apiProductService.getProductsById(productId,  setProduct);
 
@@ -35,8 +26,8 @@ const ProductDetail = () => {
                         <div className="small mb-1">{product?.productCategory}</div>
                         <h1 className="display-5 fw-bolder">{product?.productName}</h1>
                         <div className="fs-5 mb-5">
-                            <span className="text-decoration-line-through">할인 전 가격</span>
-                            <span>{product?.productPrice}원</span>
+                            <span className="text-decoration-line-through">{(product?.productPrice * 1.3).toLocaleString()}원</span>
+                            <span>{product?.productPrice.toLocaleString()}원</span>
                         </div>
                         <p className="lead">{product?.productDescription}</p>
                         <div className="d-flex">

@@ -1,9 +1,66 @@
-import {post} from "axios";
 import {useEffect, useState} from "react";
 import {Link, useNavigate, useParams} from "react-router-dom";
 import apiService from "./apiService";
 
 const PostDetail = () => {
+    const navigate = useNavigate();
+    const {postId} = useParams();
+    const [post, setPost] = useState(null);
+    const [err, setErr] = useState(null);
+
+    useEffect(() => {
+        apiService.getPostById(postId, setPost, setErr);
+    }, [postId]);
+
+    if (!post) {
+        return <p>게시물 불러오는 중입니다.</p>
+    }
+
+
+    const handleDelete = () => {
+        alert("알람 메세지");
+        prompt("프롬포트 메세지", "기본값");
+        window.confirm("확인 취소 메세지");
+
+        if (window.confirm("정말 삭제하시겠습니까?")) {
+            // apiService 에서 deletePost 메서드 호출
+            apiService.deletePost(postId);
+            // 게시물이 삭제된 상태
+            navigate("/"); // main 으로 이동하기
+        }
+    }
+
+
+    return (
+        <section className="py-5">
+            <div className="container px-4 px-lg-5 my-5">
+                <div className="row gx-4 gx-lg-5 align-items-center">
+                    <div className="col-md-6"><img className="card-img-top mb-5 mb-md-0"
+                                                   src="https://dummyimage.com/600x700/dee2e6/6c757d.jpg" alt="..."/>
+                    </div>
+                    <div className="col-md-6">
+                        <div className="small mb-1">SKU: BST-498</div>
+                        <h1 className="display-5 fw-bolder">{post?.postTitle}</h1>
+                        <p className="lead">{post?.postContent}</p>
+                        <div className="d-flex">
+                            <button className="btn btn-warning" type="button">
+                                <i className="bi-cart-fill me-1">수정</i>
+
+                            </button>
+                            <button className="btn btn-danger"
+                                    onClick={handleDelete}
+                                    type="button">
+                                <i className="bi-cart-fill me-1">삭제</i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    )
+};
+
+const PostDetails = () => {
     /*
         기본 자바 스크립트에서 페이지를 이동할 때
             -> window.location.href("이동할 경로") 로 페이지 이동

@@ -5,18 +5,18 @@ import axios from "axios";
 const API_PRODUCT_URL = "http://localhost:8080/api/products";
 
 const apiProductService = {
-    getProducts : function (callback, errCallback) {
+    getProducts : function (callback) {
         axios
             .get(API_PRODUCT_URL)
             .then(  // success
                 (res) => {
+                    console.log("data : ", res.data);
                     callback(res.data)
                 }
             )
             .catch( // fail
                 (err) => {
                     alert("제품 목록을 불러오는 중 오류가 발생했습니다.");
-                    errCallback("제품 목록 보기 실패했습니다.");
                     console.error("err 발생한 문제 : " + err)
                 }
             )
@@ -93,6 +93,21 @@ const apiProductService = {
                 }
             )
     },
+
+    deleteProduct : function (productId) {
+        axios
+            .delete(API_PRODUCT_URL)
+            .then(
+                (response) => {
+                    console.log(response.data + "개 삭제되었습니다.");
+                }
+            )
+            .catch(
+                (error) => {
+                    console.log("error 발생 " + error);
+                }
+            )
+    }
 
     // 불러올기능명칭 : function () {}
 }
