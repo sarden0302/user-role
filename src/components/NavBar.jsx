@@ -49,6 +49,21 @@ const NavBar = ({user}) => {
                             </ul>
                         </li>
 
+                        <li className="nav-item dropdown">
+                            <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                               aria-expanded="false">
+                                의류
+                            </a>
+                            <ul className="dropdown-menu">
+                                <li><Link className="dropdown-item" to="/clothes">의류 목록</Link></li>
+                                <li><Link className="dropdown-item" to="/clothes/add">의류 추가</Link></li>
+                                <li>
+                                    <hr className="dropdown-divider"/>
+                                </li>
+                                <li><Link className="dropdown-item" to="/">의류 검색</Link></li>
+                            </ul>
+                        </li>
+
                         {user?.role === 1 && (
                             <li className="nav-item">
                                 <Link className="nav-link" to="/admin">관리자 페이지</Link>

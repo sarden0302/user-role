@@ -1,11 +1,26 @@
 import axios, {get} from 'axios';
-// API_URL 이름 사용 금지
-const API_URL = "http://localhost:8080/api/clothes";
 
+// API_URL 이름 사용 금지
+const API_CLOTHES_URL = "http://localhost:8080/api/clothes";
+
+/*
+    const 기능명칭 = {
+        1번 기능 : function () {
+        },
+        2번 기능 : function () {
+        },
+        3번 기능 : function () {
+        },
+    }
+    export default 기능명칭;
+    외부 파일에서 기능명칭 안에 들어있는 기능을 사용하기 위해서는
+    기능명칭.1번기능(); 와 같이 사용
+*/
 const apiClothesService = {
     getAllClothes : function (callBack) {
         axios
-            .get(API_URL)
+            .get(API_CLOTHES_URL)
+            // async 와 await 을 통해 .then 을 여러가지 상황에 맞게 세부적으로 나눌 수 있다.
             .then(
                 (res) => {
                     callBack(res.data);
@@ -13,6 +28,7 @@ const apiClothesService = {
                 }
             )
             .catch(
+                // error 발생 시 err 는 자동으로 err 변수이름에 선언
                 (err) => {
                     alert("옷 목록을 불러오는 중 오류가 발생했습니다.");
                     console.error("err 발생한 문제 : " + err)
@@ -22,7 +38,7 @@ const apiClothesService = {
 
     getClothesById : function (id, callBack) {
         axios
-            .get(`${API_URL}/${id}`)
+            .get(`${API_CLOTHES_URL}/${id}`)
             .then(
                 (res) => {
                     callBack(res.data);
@@ -31,7 +47,7 @@ const apiClothesService = {
             .catch(
                 (err) => {
                     alert("해당 옷을 불러오는 중 오류가 발생했습니다.");
-                    console.error("err 발생한 문제 : " + err)
+                    console.error("detail err 발생한 문제 : " + err)
                 }
             );
     },
@@ -50,7 +66,7 @@ const apiClothesService = {
         formData.append("cSeason", cSeason);
 
         axios
-            .post(`${API_URL}`,
+            .post(`${API_CLOTHES_URL}`,
                 formData,
                 {
                     headers: {"Content-Type" : "multipart/form-data"}
@@ -85,7 +101,7 @@ const apiClothesService = {
         formData.append("cSeason", cSeason);
 
         axios
-            .put(`${API_URL}`, formData, {
+            .put(`${API_CLOTHES_URL}`, formData, {
                 headers: { "Content-Type": "multipart/form-data" }
             })
             .then(  // 백엔드와 연결을 성공했습니다.
@@ -103,7 +119,7 @@ const apiClothesService = {
 
     deleteClothes : function (id) {
         axios
-            .delete(`${API_URL}/${id}`)
+            .delete(`${API_CLOTHES_URL}/${id}`)
             .then(
                 () => {
                     // callback(response.data)

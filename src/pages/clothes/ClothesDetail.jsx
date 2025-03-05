@@ -10,21 +10,9 @@ const ClothesDetail = () => {
 
 
     useEffect(() => {
-        apiClothesService.getClothesById(id,
-            (newCloth) => {
-                setCloth(newCloth);
-                console.log(newCloth);
-            });
+        console.log("cId : " , id)
+        apiClothesService.getClothesById(id, setCloth);
     }, [id]);
-
-    const handleDelete = () => {
-        if (window.confirm("정말 삭제하시겠습니까?")) {
-            // apiService 에서 deletePost 메서드 호출
-            apiClothesService.deleteClothes(id);
-            // 게시물이 삭제된 상태
-            navigate("/clothes"); // main 으로 이동하기
-        }
-    }
 
     const handleEdit = () => {
         navigate(`/clothes/edit/${id}`);
@@ -54,11 +42,6 @@ const ClothesDetail = () => {
                                     onClick={handleEdit}>
                                 <i className="bi-cart-fill me-1">수정</i>
 
-                            </button>
-                            <button className="btn btn-danger"
-                                    type="button"
-                                    onClick={handleDelete}>
-                                <i className="bi-cart-fill me-1">삭제</i>
                             </button>
                         </div>
                     </div>
