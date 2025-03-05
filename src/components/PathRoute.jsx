@@ -52,7 +52,7 @@ function PathRoute () {
                 <Route path="/posts" element={<PostList />} />
                 <Route path="/posts/:postId" element={<PostDetail />} />
                 <Route path="/posts/search" element={<SearchPosts />} />
-                <Route path="/posts/create" element={<InsertPost />} />
+                <Route path="/posts/add" element={<InsertPost />} />
 
                 {/* PostDetail 에서 수정 버튼 내부 to 속성에 작성한 경로 값 설정 */}
                 <Route path="/posts/edit/:postId" element={<UpdatePost />} />

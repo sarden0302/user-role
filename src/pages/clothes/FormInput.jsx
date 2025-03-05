@@ -1,22 +1,23 @@
-const FormInput = ({id, label, placeholder}) => {
-
+const FormInput = ({id, label, placeholder, value, onChange}) => {
     return (
         <div className="form-floating mb-3">
             <input className="form-control"
-                   type="text"
-                   placeholder={placeholder}
                    id={id}
                    name={id}
-                   value={id}
-                   data-sb-validations="required"/>
+                   type="text"
+                   placeholder={placeholder}
+                   value={value}
+                   onChange={onChange}
+                   required
+            />
             <label htmlFor={id}>
                 {label} :
             </label>
-            <div className="invalid-feedback" data-sb-feedback={`${id}:required`}>
-                {label}은 필수로 입력해야 합니다.
+            <div className="invalid-feedback">
+                {label}은(는) 필수로 입력해야합니다.
             </div>
         </div>
     )
-};
 
+};
 export default FormInput;

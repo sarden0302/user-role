@@ -41,6 +41,7 @@ const NavBar = ({user}) => {
                             </a>
                             <ul className="dropdown-menu">
                                 <li><Link className="dropdown-item" to="/products">제품 목록</Link></li>
+                                <li><Link className="dropdown-item" to="posts/add">제품 등록</Link></li>
                                 <li>
                                     <hr className="dropdown-divider"/>
                                 </li>
