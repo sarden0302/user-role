@@ -89,7 +89,6 @@ const AddClothes = () => {
             return;
         }
 
-
         axios
             .post("http://localhost:8080/api/clothes", formData)
             .then(
